@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Favicon Grabber</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function start() {
+        var myurl = document.getElementById("urltext").value;
+        if (myurl == "") {
+          alert("Please enter valid url");
+        } else if (myurl != "") {
+          grab();
+        } else {
+          alert("Please enter valid url");
+        }
+      }
+
+      function grab() {
+        var myurl = document.getElementById("urltext").value;
+        var img = document.getElementById("img");
+        var size = document.getElementById("size").value;
+        var duckapi = "https://icons.duckduckgo.com/ip3/";
+        var gapi = "https://s2.googleusercontent.com/s2/favicons?domain=";
+
+        if (size == "default") {
+          var h1 = "https://";
+          var h2 = "http://";
+          myurl = myurl.replace(h1, "");
+          myurl = myurl.replace(h2, "");
+          img.src = duckapi + myurl + ".ico";
+        } else if (size == "16") {
+          img.src = gapi + myurl + "&sz=16";
+        } else if (size == "32") {
+          img.src = gapi + myurl + "&sz=32";
+        } else if (size == "48") {
+          img.src = gapi + myurl + "&sz=48";
+        } else if (size == "64") {
+          img.src = gapi + myurl + "&sz=64";
+        } else if (size == "128") {
+          img.src = gapi + myurl + "&sz=128";
+        }
+      }
+    </script>
+    <div class="grid">
+      <h2>Favicon Grabber</h2>
+      <center><img src="" id="img" /></center>
+      <br />
+      <select id="size">
+        <option value="default">Default size</option>
+        <option value="16">16x16</option>
+        <option value="32">32x32</option>
+        <option value="48">48x48</option>
+        <option value="64">64x64</option>
+        <option value="128">128x128</option></select
+      ><br /><br />
+      <input type="text" placeholder="Enter URL" id="urltext" />
+      <br /><br />
+      <input type="submit" value="GRAB" onclick="start()" />
+    </div>
+  </body>
+</html>
